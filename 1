@@ -34,7 +34,7 @@ INSERT TO users (email_id, first_name, last_name)
 VALUES ('name@gmail.com, 'firstname', 'lastname');
 
 INSERT TO users (email_id, first_name, last_name)
-VALUES ('name@gmail.com, NULL); # first_name=last_name=null
+VALUES ('name@gmail.com, NULL); # first_name=null (this is a assigned value) (will affect delete operation); last_name=null (NOT assigned value)
 
 # query
 select * from users where first_name='xx'; # invalid request
@@ -52,7 +52,10 @@ UPDATE users SET last_name='xxx' WHERE email_id='NAME@yahoo.com'; # create a new
 # delete
 DELETE first_name, last_name FROM users; # error
 DELETE first_name, last_name FROM users WHERE email_id='name@gmail.com'; # email_id 'name@gmail.com' record still there, first_name and last_name column values become null
+!!!!!!!!!!!!!!!!!!! partition will only be dropped if all column values are gone, above not gone because there's a null value assigned !!!!!!!!!!!!!!!!!!!!!!!!
 
+# truncate
+TRUNCATE users; # table will be empty
 
 
 
