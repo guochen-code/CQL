@@ -1,0 +1,66 @@
+# create table 
+CREATE TABLE temperature
+(
+  zip_code text, temp_date date,
+  temp_hour tinyint,
+  temp_minute tinyint,
+  temp_second tinyint,
+  temperature int,
+  PRIMARY KEY ( (zip_code, temp_date, temp_hour),
+                  temp_minute, temp_second)
+ )
+ WITH CLUSTERING ORDER BY
+    (temp_minute DESC, temp_second DESC)
+;
+
+# show all tables
+SELECT * FROM system_schema_mcs.tables; 
+
+# show keyspace
+select * from system_schema.keyspaces; # show keyspace
+
+# create keyspace
+create KEYSPACE sales with replication = {'class':'NetworkTopologyStrategy','east_dc':2,'west_dc':3}; 
+
+# use and describe keyspace
+use sales;
+desc tables;
+
+# create table (can't create table without primary key, which is a must)
+create table users (email_id text, first_name, text, last_name text, primary key (email_id)); # this table will be created under sales keyspace
+
+# insert into table
+INSERT TO users (email_id, first_name, last_name)
+VALUES ('name@gmail.com, 'firstname', 'lastname');
+
+INSERT TO users (email_id, first_name, last_name)
+VALUES ('name@gmail.com, NULL); # first_name=last_name=null
+
+# query
+select * from users where first_name='xx'; # invalid request
+select * from users where first_name='xx' ALLOW FILTERING; # will return but bad practice, expensive, complete scan.
+
+# update
+UPDATE users SET last_name='xxx'; # error
+UPDATE users SET last_name='xxx' WHERE email_id='name@yahoo.com'; # valid
+UPDATE users SET last_name='xxx' WHERE email_id='NAME@yahoo.com'; # create a new row
+# update nothing but insert!!!!!!!!!!!!!!!!! unlike RDBS, it will replace old value!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!! need to flush to disk so that the data can be stored. Otherwise all still in memory, will lose !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+# delete
+DELETE first_name, last_name FROM users; # error
+DELETE first_name, last_name FROM users WHERE email_id='name@gmail.com'; # email_id 'name@gmail.com' record still there, first_name and last_name column values become null
+
+
+
+
+
+
+
+
+
+
+
+
