@@ -59,8 +59,19 @@ TRUNCATE users; # table will be empty
 
 
 
+Part-II
+# add a new column
+ALTER TABLE users ADD year_of_birth smallint;
 
+INSERT INTO users (email_id, year_of_birth)
+VALUES ('name@gmail.com',1985);
 
+# delete a column
+ALTER TABLE users DROP year_of_birth;
+
+# add comment to a table
+ALTER TABLE users
+WITH comment='This table contains user information.';
 
 
 
