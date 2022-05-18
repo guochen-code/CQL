@@ -1,0 +1,29 @@
+# collections for storing small amount of data
+set ---- list ----- map
+
+ALERT TABLE users ADD secret_questions map<text,text>;
+
+INSERT INTO users (email_id, secret_questions)
+VALUES ('king@gmail.com',
+{Favorite Alphabet': 'T', 'Favorite Number': '8'});
+
+UPDATE users
+SET secret_questions = secret_questions + {'Favorite Car': 'BMW'}
+WHERE email_id='king@gmail.com';
+
+UPDATE users
+SET secret_questions['Favorite Car'] = 'Lexus'
+WHERE email_id='king@gmail.com';
+
+UPDATE users
+SET secret_questions=secret_questions - {'Favorite Number'}
+WHERE email_id='king@gmail.com';
+
+DELETE secret_questions['Favorite Alphabet']
+FROM users
+WHERE email_id='king@gmail.com';
+
+DELETE secret_questions
+FROM users
+WHERE email_id='king@gmail.com';
+
