@@ -1,0 +1,24 @@
+CREATE TABLE webpage_statistics(
+webpage text PRIMARY KEY,
+webpage_views counter,
+unique_visitors counter,
+likes counter,
+dislikes counter
+);
+
+
+# insert statements are not allowed on counter tables, use update instead
+
+
+# update : cannot set the value of counter column, counters can only be incremented or decremented, not set
+
+# corrct way - inset/update 
+UPDATE webpage_statistics
+SET webpage_views = webpage_views + 0
+WHERE webpage = 'homepage.php';
+
+# increment counts
+UPDATE webpage_statistics
+SET webpage_views = webpage_views + 1
+WHERE webpage = 'homepage.php';
+
