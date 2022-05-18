@@ -1,0 +1,6 @@
+SELECT JSON * 
+FROM tablename;
+
+INSERT INTO users
+JSON '{'email_id':'name@gmail.com','last_name':'Jason'}'; # insert in json format
+
