@@ -1,3 +1,11 @@
+# create keyspace
+create keyspace myfirstkeyspace
+with replication {
+                  class:'NetworkTopologyStrategy',
+                  replication_factor:'3',
+                  }
+                  
+
 # create table 
 CREATE TABLE temperature
 (
