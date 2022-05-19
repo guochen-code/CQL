@@ -1,0 +1,55 @@
+
+Create Keyspace
+create keyspace firstkeyspace with replication  = {'class': 'SimpleStrategy', ’replication_factor’: '1' };
+
+describe firstkeyspace;
+
+use firstkeyspace;
+
+Create Table
+create table employee(
+emp_id int,  
+emp_name text,  
+emp_age int,  
+PRIMARY KEY((emp_id)));
+
+describe tables;
+describe employee;
+
+INSERT DATA
+insert into employee
+(emp_id,emp_name,emp_age)
+values(20,'john',35);
+
+insert into employee
+(emp_id,emp_name,emp_age)
+values(10,'Sam',28);
+
+READ DATA
+Select * from employee;
+Select * from employee where emp_id=10 ;
+Select * from employee where emp_name='Sam' ;
+
+UPDATE DATA
+Update employee set emp_age=35 where emp_id=10;
+Update employee set emp_age=45 where emp_name='Sam';
+
+DELETE DATA
+Delete from employee where emp_id=10;
+Truncate employee;
+
+DROP KEYSPACE
+Drop keyspace firstkeyspace;
+
+
+
+
+
+
+
+
+
+
+
+
+
