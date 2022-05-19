@@ -1,0 +1,4 @@
+nodetool status # give address
+
+# use address to connect
+cqlsh 192.168.1.153
